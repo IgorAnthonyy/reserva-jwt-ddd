@@ -1,0 +1,2 @@
+namespace Reservas.Infrastructure.Repositories;
+
