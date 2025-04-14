@@ -1,4 +1,5 @@
 using Mapster;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Reservas.Application.DTO;
 using Reservas.Application.Services;
@@ -15,7 +16,7 @@ public class ReservaController : ControllerBase
     {
         _reservaService = reservaService;
     }
-
+    [Authorize]
     [HttpGet]
     public async Task<IActionResult> BuscarTodasReservas()
     {
@@ -23,7 +24,7 @@ public class ReservaController : ControllerBase
         var reservasDto = reservas.Adapt<List<ReservaDTOResponse>>();
         return Ok(reservasDto);
     }
-
+    [Authorize]
     [HttpGet("{id}")]
     public async Task<IActionResult> BuscarReservaPorId(int id)
     {
@@ -34,7 +35,7 @@ public class ReservaController : ControllerBase
         var reservaDto = reserva.Adapt<ReservaDTOResponse>();
         return Ok(reservaDto);
     }
-
+    [Authorize]
     [HttpPost]
     public async Task<IActionResult> CriarReserva([FromBody] ReservaDTORequest reservaDto)
     {
@@ -47,7 +48,7 @@ public class ReservaController : ControllerBase
         var reservaResponse = reservaRelacionamento.Adapt<ReservaDTOResponse>();
         return CreatedAtAction(nameof(BuscarReservaPorId), new { id = reservaResponse.Id }, reservaResponse);
     }
-
+    [Authorize]
     [HttpPut("{id}")]
     public async Task<IActionResult> AtualizarReserva(int id, [FromBody] ReservaDTORequest reservaDto)
     {
@@ -64,7 +65,7 @@ public class ReservaController : ControllerBase
         var reservaResponse = reservaRelacionamento.Adapt<ReservaDTOResponse>();
         return Ok(reservaResponse);
     }
-
+    [Authorize]
     [HttpDelete("{id}")]
     public async Task<IActionResult> Delete(int id)
     {

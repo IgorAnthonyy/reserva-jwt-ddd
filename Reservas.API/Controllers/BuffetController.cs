@@ -1,4 +1,5 @@
 using Mapster;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Reservas.Application.DTO;
 using Reservas.Application.Services;
@@ -14,7 +15,7 @@ public class BuffetController : ControllerBase
     {
         _buffetService = buffetService;
     }
-
+    [Authorize]
     [HttpGet]
     public async Task<IActionResult> BuscarTodosBuffets()
     {
@@ -22,7 +23,7 @@ public class BuffetController : ControllerBase
         var buffetsDto = buffets.Adapt<List<BuffetDTOResponse>>();
         return Ok(buffetsDto);
     }
-
+    [Authorize]
     [HttpGet("{id}")]
     public async Task<IActionResult> BuscarBuffetPorId(int id)
     {
@@ -31,7 +32,7 @@ public class BuffetController : ControllerBase
         var buffetDto = buffet.Adapt<BuffetDTOResponse>();
         return Ok(buffetDto);
     }
-
+    [Authorize]
     [HttpPost]
     public async Task<IActionResult> CriarBuffet([FromBody] BuffetDTORequest buffetDto)
     {
@@ -40,7 +41,7 @@ public class BuffetController : ControllerBase
         var buffetResponse = buffetCriado.Adapt<BuffetDTOResponse>();
         return CreatedAtAction(nameof(BuscarBuffetPorId), new { id = buffetResponse.Id }, buffetResponse);
     }
-
+    [Authorize]
     [HttpPut("{id}")]
     public async Task<IActionResult> AtualizarBuffet(int id, [FromBody] BuffetDTORequest buffetDto)
     {
@@ -54,7 +55,7 @@ public class BuffetController : ControllerBase
         var buffetResponse = buffetAtualizado.Adapt<BuffetDTOResponse>();
         return Ok(buffetResponse);
     }
-
+    [Authorize]
     [HttpDelete("{id}")]
     public async Task<IActionResult> Delete(int id)
     {
