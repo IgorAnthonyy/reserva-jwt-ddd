@@ -50,7 +50,7 @@ public class BuffetController : ControllerBase
         var buffet = await _buffetService.ObterBuffetPorId(id);
         if (buffet == null) return NotFound();
 
-        buffetDto.Adapt(buffet); // Mapster
+        buffetDto.Adapt(buffet); 
         var buffetAtualizado = await _buffetService.AtualizarBuffet(buffet);
         var buffetResponse = buffetAtualizado.Adapt<BuffetDTOResponse>();
         return Ok(buffetResponse);

@@ -28,6 +28,7 @@ public class UsuarioService
     }
     public async Task<Usuario> AtualizarUsuario(Usuario usuario)
     {
+        usuario.Senha = _passwordHasher.HashPassword(usuario, usuario.Senha);
         return await _usuarioRepository.Atualizar(usuario);
     }
     public async Task DeletarUsuario(int id)

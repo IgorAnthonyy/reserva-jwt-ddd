@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Reservas.Domain.Entities;
+using Reservas.Infra.Data.Configurations;
 
 namespace Reservas.Infrastructure.Data;
 public class ReservaDbContext : DbContext
@@ -16,5 +17,6 @@ public class ReservaDbContext : DbContext
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
+        modelBuilder.ApplyConfiguration(new UsuarioConfiguration());
     }
 }

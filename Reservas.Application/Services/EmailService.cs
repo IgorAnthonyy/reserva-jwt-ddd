@@ -1,0 +1,43 @@
+using MailKit.Net.Smtp;
+using MimeKit;
+using System.Threading.Tasks;
+
+namespace EmprestimosLivros.Email
+{
+    public class EmailService
+    {
+        public async Task EnviarEmailAsync(string destinatario, string assunto, List<string> bodyEmail)
+        {
+
+
+            var email = new MimeMessage();
+            email.From.Add(new MailboxAddress("Cadastro de Usuário", "igor.maciel@sptech.school"));
+            email.To.Add(new MailboxAddress("", destinatario));
+            email.Subject = assunto;
+
+            email.Body = new TextPart("html")
+            {
+                Text = $@"
+                    <html>
+                    <body style='background-color: rgb(0, 0, 0); color: rgb(255, 255, 255); font-family: Arial, sans-serif; padding: 20px;'>
+                        <h2 style='color:rgb(0, 221, 255);'>Bem-vindo, {bodyEmail[0]}!</h2>
+                        <p>Seu cadastro foi realizado com sucesso em nossa plataforma.</p>
+                        <p><strong>Nome:</strong> {bodyEmail[0]}</p>
+                        <p><strong>Email:</strong> {bodyEmail[1]}</p>
+                        <p><strong>Telefone:</strong> {bodyEmail[2]}</p>
+                        <br/>
+                        <p>Você já pode acessar sua conta e aproveitar nossos serviços.</p>
+                        <hr>
+                        <p style='font-size: 12px; color: #888;'>Este é um e-mail automático. Por favor, não responda.</p>
+                    </body>
+                    </html>"
+            };
+
+            using var smtp = new SmtpClient();
+            await smtp.ConnectAsync("smtp.office365.com", 587, MailKit.Security.SecureSocketOptions.StartTls);
+            await smtp.AuthenticateAsync("igor.maciel@sptech.school", "#Gf37620373888");
+            await smtp.SendAsync(email);
+            await smtp.DisconnectAsync(true);
+        }
+    }
+}

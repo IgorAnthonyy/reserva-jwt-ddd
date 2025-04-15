@@ -1,3 +1,4 @@
+using EmprestimosLivros.Email;
 using Mapster;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -12,8 +13,6 @@ namespace Reservas.API.Controllers;
 [Route("[controller]")]
 public class UsuarioController : ControllerBase
 {
-    private readonly PasswordHasher<Usuario> _passwordHasher = new PasswordHasher<Usuario>();
-
     private readonly UsuarioService _usuarioService;
     private readonly TokenService _tokenService;
 
@@ -46,6 +45,9 @@ public class UsuarioController : ControllerBase
         var usuario = usuarioDto.Adapt<Usuario>();
         var usuarioCriado = await _usuarioService.CriarUsuario(usuario);
         var usuarioResponse = usuarioCriado.Adapt<UsuarioDTOResponse>();
+        EmailService emailService = new EmailService();
+        var bodyEmail = new List<string> { usuarioResponse.Nome, usuarioResponse.Email, usuarioResponse.Telefone };
+        await emailService.EnviarEmailAsync(usuarioResponse.Email, "Cadastro de Usuário", bodyEmail);
         return CreatedAtAction(nameof(BuscarUsuarioPorId), new { id = usuarioResponse.Id }, usuarioResponse);
     }
     [Authorize]
@@ -57,7 +59,7 @@ public class UsuarioController : ControllerBase
         var usuario = await _usuarioService.ObterUsuarioPorId(id);
         if (usuario == null) return NotFound();
 
-        usuarioDto.Adapt(usuario); // Mapster
+        usuarioDto.Adapt(usuario);
         var usuarioAtualizado = await _usuarioService.AtualizarUsuario(usuario);
         var usuarioResponse = usuarioAtualizado.Adapt<UsuarioDTOResponse>();
         return Ok(usuarioResponse);
