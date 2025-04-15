@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Reservas.Infrastructure.Data;
 
@@ -11,9 +12,11 @@ using Reservas.Infrastructure.Data;
 namespace Reservas.Infrastructure.Migrations
 {
     [DbContext(typeof(ReservaDbContext))]
-    partial class ReservaDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250415181412_AtualizandoRelacionamento")]
+    partial class AtualizandoRelacionamento
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

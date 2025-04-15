@@ -10,7 +10,7 @@ public class ReservaDbContextFactory : IDesignTimeDbContextFactory<ReservaDbCont
     {
         var optionsBuilder = new DbContextOptionsBuilder<ReservaDbContext>();
 
-        optionsBuilder.UseSqlServer("Server=localhost,1433;Database=ReservasDB;User Id=sa;Password=fUtur@13!;TrustServerCertificate=True;");
+        optionsBuilder.UseSqlServer("Server=localhost,1433;Database=ReservasDB;User Id=sa;Password=fUtur@13;TrustServerCertificate=True;");
 
         return new ReservaDbContext(optionsBuilder.Options);
     }

@@ -8,4 +8,6 @@ public class Usuario
     public string Senha { get; set; }
     public string Telefone { get; set; }
 
+    public ICollection<Reserva> Reservas { get; set; } = new List<Reserva>();
+
 }

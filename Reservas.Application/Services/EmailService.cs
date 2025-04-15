@@ -21,10 +21,10 @@ namespace EmprestimosLivros.Email
                     <html>
                     <body style='background-color: rgb(0, 0, 0); color: rgb(255, 255, 255); font-family: Arial, sans-serif; padding: 20px;'>
                         <h2 style='color:rgb(0, 221, 255);'>Bem-vindo, {bodyEmail[0]}!</h2>
-                        <p>Seu cadastro foi realizado com sucesso em nossa plataforma.</p>
-                        <p><strong>Nome:</strong> {bodyEmail[0]}</p>
-                        <p><strong>Email:</strong> {bodyEmail[1]}</p>
-                        <p><strong>Telefone:</strong> {bodyEmail[2]}</p>
+                        <p style='color: white'>Seu cadastro foi realizado com sucesso em nossa plataforma.</p>
+                        <p style='color: white'><strong>Nome:</strong> {bodyEmail[0]}</p>
+                        <p style='color: white'><strong>Email:</strong> {bodyEmail[1]}</p>
+                        <p style='color: white'><strong>Telefone:</strong> {bodyEmail[2]}</p>
                         <br/>
                         <p>Você já pode acessar sua conta e aproveitar nossos serviços.</p>
                         <hr>

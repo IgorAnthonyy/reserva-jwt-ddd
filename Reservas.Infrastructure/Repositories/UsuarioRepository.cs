@@ -1,3 +1,4 @@
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using Reservas.Domain.Entities;
 using Reservas.Domain.Interfaces;
@@ -26,9 +27,11 @@ public class UsuarioRepository : IUsuarioRepository
 
     public async Task<Usuario> Adicionar(Usuario usuario)
     {
+
         await _context.Usuarios.AddAsync(usuario);
         await _context.SaveChangesAsync();
         return usuario;
+
     }
 
     public async Task<Usuario> Atualizar(Usuario usuario)
@@ -36,6 +39,7 @@ public class UsuarioRepository : IUsuarioRepository
         _context.Usuarios.Update(usuario);
         await _context.SaveChangesAsync();
         return usuario;
+
     }
 
     public async Task Deletar(int id)

@@ -18,5 +18,7 @@ public class ReservaDbContext : DbContext
     {
         base.OnModelCreating(modelBuilder);
         modelBuilder.ApplyConfiguration(new UsuarioConfiguration());
+        modelBuilder.ApplyConfiguration(new BuffetConfiguration());
+        modelBuilder.ApplyConfiguration(new ReservaConfiguration());
     }
 }

@@ -43,6 +43,11 @@ public class UsuarioController : ControllerBase
     public async Task<IActionResult> CriarUsuario([FromBody] UsuarioDTORequest usuarioDto)
     {
         var usuario = usuarioDto.Adapt<Usuario>();
+
+        var usuarioComMesmoEmail = await _usuarioService.ObterUsuarioPorEmail(usuarioDto.Email);
+        if (usuarioComMesmoEmail != null)
+            return Conflict($"Já existe outro usuário com o e-mail {usuarioDto.Email}.");
+
         var usuarioCriado = await _usuarioService.CriarUsuario(usuario);
         var usuarioResponse = usuarioCriado.Adapt<UsuarioDTOResponse>();
         EmailService emailService = new EmailService();
@@ -59,9 +64,14 @@ public class UsuarioController : ControllerBase
         var usuario = await _usuarioService.ObterUsuarioPorId(id);
         if (usuario == null) return NotFound();
 
+        var usuarioComMesmoEmail = await _usuarioService.ObterUsuarioPorEmail(usuarioDto.Email);
+        if (usuarioComMesmoEmail != null && usuarioComMesmoEmail.Id != id)
+            return Conflict($"Já existe outro usuário com o e-mail {usuarioDto.Email}.");
+
         usuarioDto.Adapt(usuario);
         var usuarioAtualizado = await _usuarioService.AtualizarUsuario(usuario);
         var usuarioResponse = usuarioAtualizado.Adapt<UsuarioDTOResponse>();
+
         return Ok(usuarioResponse);
     }
     [Authorize]
