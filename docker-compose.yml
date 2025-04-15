@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: sqlserver
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=fUtur@13
+    ports:
+      - "1433:1433"
+    networks:
+      - reservas-net
+
+  reservas-api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: reservas-api
+    ports:
+      - "8080:80"
+    depends_on:
+      - sqlserver
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__DefaultConnection=Server=sqlserver;Database=ReservasDb;User=sa;Password=fUtur@13;TrustServerCertificate=True
+    networks:
+      - reservas-net
+
+networks:
+  reservas-net:
+    driver: bridge
