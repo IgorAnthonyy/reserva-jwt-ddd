@@ -31,11 +31,6 @@ Este é um projeto em desenvolvimento para um sistema de reservas entre usuário
     cd Reservas-jwt-ddd
     ```
 
-3. Crie a imagem do Docker e suba os containers:
-    ```bash
-    docker-compose up --build
-    ```
-
 ### Configuração do E-mail
 
 O serviço de e-mail está configurado diretamente na classe `EmailService.cs` dentro do projeto. Para enviar e-mails, a aplicação precisa das credenciais do seu servidor SMTP.
@@ -56,9 +51,8 @@ O serviço de e-mail está configurado diretamente na classe `EmailService.cs` d
       ```
 
 #### Crie a imagem do Docker e suba os containers:
-    ```bash
-    docker-compose up --build
-    ```
+    ```docker-compose up --build
+```
 
 
 ### Acessando a Aplicação
