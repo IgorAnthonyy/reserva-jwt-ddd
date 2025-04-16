@@ -50,13 +50,16 @@ O serviço de e-mail está configurado diretamente na classe `EmailService.cs` d
       await smtp.AuthenticateAsync("seuemail@email.com", "senha"); // linha 38
       ```
 
-### Crie a imagem do Docker e suba os containers:
-    ```bash
-    docker-compose up --build
+### Criação e Execução dos Containers Docker
+
+Agora, para construir a imagem do Docker e rodar os containers, utilize o seguinte comando:
+
+```bash
+docker-compose up --build
 ```
 
+### Acessar o projeto
 
-### Acessando a Aplicação
-
-Após subir os containers com o Docker, a aplicação estará disponível na seguinte URL: (http://localhost:8080)
-
+```bash
+http://localhost:8080
+```
