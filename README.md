@@ -36,20 +36,16 @@ Este é um projeto em desenvolvimento para um sistema de reservas entre usuário
 O serviço de e-mail está configurado diretamente na classe `EmailService.cs` dentro do projeto. Para enviar e-mails, a aplicação precisa das credenciais do seu servidor SMTP.
 
 #### Passos para configurar o e-mail:
-1. Abra o arquivo `EmailService.cs` na pasta `Reservas.Application`.
+1. Abra o arquivo `.env`.
 
-2. Dentro dessa classe, você verá o código responsável por configurar o envio de e-mails. Modifique as configurações conforme necessário.
+2. Dentro desse arquivo, você verá o código responsável por configurar o envio de e-mails. Modifique as configurações conforme necessário.
 
     - Defina o endereço de e-mail do remetente:
       ```csharp
-      email.From.Add(new MailboxAddress("Cadastro de Usuário", "seuemail@email.com")); // linha 14
+      EMAIL_USERNAME=seuemail@email.com
+      EMAIL_PASSWORD=suasenha
       ```
-
-    - Autentique com seu servidor SMTP:
-      ```csharp
-      await smtp.AuthenticateAsync("seuemail@email.com", "senha"); // linha 38
-      ```
-
+      
 ### Criação e Execução dos Containers Docker
 
 Agora, para construir a imagem do Docker e rodar os containers, utilize o seguinte comando:
