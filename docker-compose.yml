@@ -6,7 +6,7 @@ services:
     container_name: sqlserver
     environment:
       - ACCEPT_EULA=Y
-      - SA_PASSWORD=fUtur@13
+      - SA_PASSWORD=SuaSenhaForte@#$23
     ports:
       - "1433:1433"
     networks:
@@ -23,7 +23,7 @@ services:
       - sqlserver
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
-      - ConnectionStrings__DefaultConnection=Server=sqlserver;Database=ReservasDb;User=sa;Password=fUtur@13;TrustServerCertificate=True
+      - ConnectionStrings__DefaultConnection=Server=sqlserver;Database=ReservasDb;User=sa;Password=SuaSenhaForte@#$23;TrustServerCertificate=True
     networks:
       - reservas-net
 
