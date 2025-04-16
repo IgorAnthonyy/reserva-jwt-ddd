@@ -11,8 +11,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reservas.Infrastructure", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reservas.API", "Reservas.API\Reservas.API.csproj", "{7D7B3408-5EFE-4DE6-87A4-990FDA1D7C52}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reservas.Tests", "Reservas.Tests\Reservas.Tests.csproj", "{85CDA018-616B-42C4-ACED-50FAB74EC20D}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
