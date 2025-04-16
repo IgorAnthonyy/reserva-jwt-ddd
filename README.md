@@ -50,8 +50,9 @@ O serviço de e-mail está configurado diretamente na classe `EmailService.cs` d
       await smtp.AuthenticateAsync("seuemail@email.com", "senha"); // linha 38
       ```
 
-#### Crie a imagem do Docker e suba os containers:
-    ```docker-compose up --build
+### Crie a imagem do Docker e suba os containers:
+    ```bash
+    docker-compose up --build
 ```
 
 
