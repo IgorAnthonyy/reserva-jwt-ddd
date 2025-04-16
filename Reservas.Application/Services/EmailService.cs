@@ -11,7 +11,7 @@ namespace EmprestimosLivros.Email
 
 
             var email = new MimeMessage();
-            email.From.Add(new MailboxAddress("Cadastro de Usuário", "igor.maciel@sptech.school"));
+            email.From.Add(new MailboxAddress("Cadastro de Usuário", "seuemail@email.com"));
             email.To.Add(new MailboxAddress("", destinatario));
             email.Subject = assunto;
 
@@ -35,7 +35,7 @@ namespace EmprestimosLivros.Email
 
             using var smtp = new SmtpClient();
             await smtp.ConnectAsync("smtp.office365.com", 587, MailKit.Security.SecureSocketOptions.StartTls);
-            await smtp.AuthenticateAsync("igor.maciel@sptech.school", "#Gf37620373888");
+            await smtp.AuthenticateAsync("seuemail@email.com", "senha");
             await smtp.SendAsync(email);
             await smtp.DisconnectAsync(true);
         }
