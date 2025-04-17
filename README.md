@@ -23,7 +23,7 @@ Este é um projeto em desenvolvimento para um sistema de reservas entre usuário
 
 1. Clone o repositório:
     ```bash
-    git clone https://github.com/SEU_USUARIO/Reservas-jwt-ddd.git
+    https://github.com/IgorAnthonyy/reserva-jwt-ddd.git
     ```
 
 2. Acesse o diretório do projeto:
